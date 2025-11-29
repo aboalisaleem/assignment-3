@@ -75,4 +75,54 @@ document.addEventListener('DOMContentLoaded', () => {
     setupThemeToggle();
     setupToggleButtons();
     setupProjectSearch();
+    setupGitHubIntegration(); 
 })
+
+// GitHub API Integration for Assignment 3
+async function fetchGitHubRepos() {
+    const reposContainer = document.getElementById('github-repos');
+    const username = 'aboalisaleem'; // Replace with your actual GitHub username
+    
+    try {
+        reposContainer.innerHTML = '<div class="loading-message">Loading repositories...</div>';
+        const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=6`);
+        
+        if (!response.ok) throw new Error('User not found or API limit exceeded');
+        
+        const repos = await response.json();
+        displayGitHubRepos(repos);
+    } catch (error) {
+        reposContainer.innerHTML = `<div class="error-message">Error: ${error.message}</div>`;
+    }
+}
+
+function displayGitHubRepos(repos) {
+    const reposContainer = document.getElementById('github-repos');
+    
+    if (repos.length === 0) {
+        reposContainer.innerHTML = '<div class="error-message">No repositories found</div>';
+        return;
+    }
+
+    const reposHTML = repos.map(repo => `
+        <div class="repo-card">
+            <div class="repo-header">
+                <h3><a href="${repo.html_url}" target="_blank">${repo.name}</a></h3>
+                <span class="repo-language">${repo.language || 'Not specified'}</span>
+            </div>
+            <p class="repo-description">${repo.description || 'No description available'}</p>
+            <div class="repo-stats">
+                <span>⭐ ${repo.stargazers_count}</span>
+                <span>🍴 ${repo.forks_count}</span>
+                <span>📅 ${new Date(repo.updated_at).toLocaleDateString()}</span>
+            </div>
+        </div>
+    `).join('');
+
+    reposContainer.innerHTML = reposHTML;
+}
+
+function setupGitHubIntegration() {
+    const fetchButton = document.getElementById('fetch-repos');
+    fetchButton.addEventListener('click', fetchGitHubRepos);
+}
