@@ -18,6 +18,7 @@
                 <li class="nav-item"><a href="#home">Home</a></li>
                 <li class="nav-item"><a href="#about">About</a></li>
                 <li class="nav-item"><a href="#projects">Projects</a></li>
+                <li class="nav-item"><a href="#github">GitHub</a></li>
                 <li class="nav-item"><a href="#contact">Contact</a></li>
             </ul>
             <button id="theme-toggle">🌙</button>
@@ -28,6 +29,10 @@
   <div class="greeting-content">
     <h1>Welcome to My Portfolio</h1>
     <p>Explore my work and projects.</p>
+    <div class="visitor-info">
+        <p>You've been here for <span id="visit-timer">0</span> seconds</p>
+        <p id="return-visitor" style="display: none;">Welcome back! 👋</p>
+    </div>
   </div>
 </div>
 
@@ -36,7 +41,7 @@
             <h2>About Me</h2>
             <div class="about-content">
                 <div class="about-image">
-                    <img src="/assests/images/person.png" alt="Profile Picture" id="profile-img">
+                    <img src="/assets/images/person.png" alt="Profile Picture" id="profile-img">
                 </div>
                 <div class="about-text">
                     <p class="tagline">"Turning ideas into functional solutions"</p>
@@ -53,58 +58,124 @@
 
   <section id="projects" class="projects">
         <div class="container">
-
             <h2>My Projects</h2>
-              <div class="project-filters">
-                <button class="filter-btn" data-filter="web">Web Apps</button>
+            <div class="project-controls">
+                <div class="project-filters">
+                    <button class="filter-btn active" data-filter="all">All Projects</button>
+                    <button class="filter-btn" data-filter="web">Web Apps</button>
+                    <button class="filter-btn" data-filter="api">API Projects</button>
+                </div>
+                <div class="project-sort">
+                    <select id="sort-projects">
+                        <option value="name">Sort by Name</option>
+                        <option value="date">Sort by Date</option>
+                    </select>
+                </div>
             </div>
             <div class="search-container">
                 <input type="text" id="project-search" placeholder="Search projects...">
             </div>
 
             <div class="projects-grid">
-                <div class="project-card">
+                <div class="project-card" data-type="web" data-date="2024-01">
                     <div class="project-image">
-                        <img src="/assests/images/mangment_app.png" alt="Task Management App">
+                        <img src="/assets/images/mangment_app.png" alt="Task Management App">
                     </div>
                     <div class="project-content">
                         <h3>Task Management App</h3>
                         <p>An intuitive productivity application that helps 
                           users organize their tasks efficiently. Includes 
                           drag-and-drop functionality and progress tracking.</p>
+                        <div class="project-meta">Web App • Jan 2024</div>
                     </div>
                 </div>
-                <div class="project-card">
+                <div class="project-card" data-type="web" data-date="2024-02">
                     <div class="project-image">
-                        <img src="/assests/images/W.png" alt="Weather app">
+                        <img src="/assets/images/W.png" alt="Weather app">
                     </div>
                     <div class="project-content">
-                        <h3>Weather app</h3>
+                        <h3>Weather App</h3>
                         <p>A real-time weather application that displays current
                            conditions and forecasts. Integrates with weather API 
                            and features location-based services.</p>
+                        <div class="project-meta">Web App • Feb 2024</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <section id="github" class="github-section">
+        <div class="container">
+            <h2>My GitHub Repositories</h2>
+            <div class="github-controls">
+                <input type="text" id="github-username" placeholder="Enter GitHub username" value="your-username">
+                <button id="fetch-repos">Load Repositories</button>
+            </div>
+            <div id="github-repos" class="repos-grid">
+                <div class="loading-message">Enter your GitHub username to load repositories...</div>
+            </div>
+        </div>
+    </section>
+
     <section id="contact" class="contact">
 
-    <div class="container">
+        <div class="container">
 
-        <h2>Contact Me</h2>
-        <div class="simple-contact">
-            <p> email@example.com</p>
-            <p>  0501234567</p>
-            <p> dmmam, saudi arabia</p>
+            <h2>Contact Me</h2>
+                        <div class="simple-contact">
+                <p>📧 email@example.com</p>
+                <p>📱 0501234567</p>
+                <p>📍 Riyadh, Saudi Arabia</p>
+            </div>
+
+            <!-- Enhanced Contact Form -->
+            <div class="contact-form-container">
+                <h3>Send me a message</h3>
+                <form id="contact-form" class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name *</label>
+                        <input type="text" id="name" name="name" required>
+                        <span class="error-message" id="name-error"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                        <span class="error-message" id="email-error"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                        <span class="error-message" id="message-error"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="user-type">I am a:</label>
+                        <select id="user-type" name="user-type">
+                            <option value="recruiter">Recruiter</option>
+                            <option value="client">Potential Client</option>
+                            <option value="collaborator">Fellow Developer</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" id="submit-btn" class="submit-btn">Send Message</button>
+                    <div id="form-status" class="form-status"></div>
+                </form>
+            </div>
         </div>
-    </div>
     </section>
 
   <footer class="footer">
         <div class="container">
-            <p>2025 My Portfolio</p>
+            <p>2025 My Portfolio | <span id="total-visitors">0</span> visitors</p>
         </div>
   </footer>
 
