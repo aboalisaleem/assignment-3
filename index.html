@@ -1,1 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+<nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <span>My Portfolio</span>
+                <span id="greeting">Welcome!</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#home">Home</a></li>
+                <li class="nav-item"><a href="#about">About</a></li>
+                <li class="nav-item"><a href="#projects">Projects</a></li>
+                <li class="nav-item"><a href="#contact">Contact</a></li>
+            </ul>
+            <button id="theme-toggle">🌙</button>
+        </div>
+    </nav>
+
+<div class="greeting">
+  <div class="greeting-content">
+    <h1>Welcome to My Portfolio</h1>
+    <p>Explore my work and projects.</p>
+  </div>
+</div>
+
+ <section id="about" class="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="/assests/images/person.png" alt="Profile Picture" id="profile-img">
+                </div>
+                <div class="about-text">
+                    <p class="tagline">"Turning ideas into functional solutions"</p>
+                    <p>I'm a passionate web developer</p>
+                    <button class="toggle-btn" data-target="more-about">Show More About Me</button>
+                    <div id="more-about" class="hidden-content">
+                        <p>I love coding and learning new technologies!</p>
+                        <p>When I'm not coding, I enjoy reading and hiking.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+  </section>
+
+  <section id="projects" class="projects">
+        <div class="container">
+
+            <h2>My Projects</h2>
+              <div class="project-filters">
+                <button class="filter-btn" data-filter="web">Web Apps</button>
+            </div>
+            <div class="search-container">
+                <input type="text" id="project-search" placeholder="Search projects...">
+            </div>
+
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="/assests/images/mangment_app.png" alt="Task Management App">
+                    </div>
+                    <div class="project-content">
+                        <h3>Task Management App</h3>
+                        <p>An intuitive productivity application that helps 
+                          users organize their tasks efficiently. Includes 
+                          drag-and-drop functionality and progress tracking.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="/assests/images/W.png" alt="Weather app">
+                    </div>
+                    <div class="project-content">
+                        <h3>Weather app</h3>
+                        <p>A real-time weather application that displays current
+                           conditions and forecasts. Integrates with weather API 
+                           and features location-based services.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+
+    <div class="container">
+
+        <h2>Contact Me</h2>
+        <div class="simple-contact">
+            <p> email@example.com</p>
+            <p>  0501234567</p>
+            <p> dmmam, saudi arabia</p>
+        </div>
+    </div>
+    </section>
+
+  <footer class="footer">
+        <div class="container">
+            <p>2025 My Portfolio</p>
+        </div>
+  </footer>
+
+
+
+    <script src="js/script.js"></script>
+</body>
+</html>
+
 
